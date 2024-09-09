@@ -89,6 +89,7 @@ resource "aws_instance" "web1" {
   instance_type = "t2.micro"
   subnet_id     = aws_subnet.subnet1.id
   security_groups = [aws_security_group.allow_ssh_http.name]
+  iam_instance_profile = aws_iam_instance_profile.ec2_profile.id
 
   user_data = <<-EOF
               #!/bin/bash
@@ -108,7 +109,7 @@ resource "aws_instance" "web2" {
   instance_type = "t2.micro"
   subnet_id     = aws_subnet.subnet2.id
   security_groups = [aws_security_group.allow_ssh_http.name]
-
+  iam_instance_profile = aws_iam_instance_profile.ec2_profile.id
   user_data = <<-EOF
               #!/bin/bash
               yum update -y
@@ -127,6 +128,7 @@ resource "aws_instance" "web3" {
   instance_type = "t2.micro"
   subnet_id     = aws_subnet.subnet3.id
   security_groups = [aws_security_group.allow_ssh_http.name]
+  iam_instance_profile = aws_iam_instance_profile.ec2_profile.id
 
   user_data = <<-EOF
               #!/bin/bash
@@ -193,19 +195,6 @@ resource "aws_iam_role_policy" "ec2_s3_policy" {
 resource "aws_iam_instance_profile" "ec2_profile" {
   name = "ec2_profile"
   role = aws_iam_role.ec2_s3_access.name
-}
-
-# Attach the IAM Role to EC2 Instances
-resource "aws_instance" "web1" {
-  iam_instance_profile = aws_iam_instance_profile.ec2_profile.id
-}
-
-resource "aws_instance" "web2" {
-  iam_instance_profile = aws_iam_instance_profile.ec2_profile.id
-}
-
-resource "aws_instance" "web3" {
-  iam_instance_profile = aws_iam_instance_profile.ec2_profile.id
 }
 
 # 10. Output
