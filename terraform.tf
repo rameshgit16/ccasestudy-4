@@ -1,6 +1,6 @@
 # 1. Provider
 provider "aws" {
-  region = "us-east-1" # You can change the region as per your requirement
+  region = "ap-south-1" # You can change the region as per your requirement
 }
 
 # 2. Create a VPC
@@ -12,19 +12,19 @@ resource "aws_vpc" "main" {
 resource "aws_subnet" "subnet1" {
   vpc_id     = aws_vpc.main.id
   cidr_block = "10.0.1.0/24"
-  availability_zone = "us-east-1a"
+  availability_zone = "ap-south-1a"
 }
 
 resource "aws_subnet" "subnet2" {
   vpc_id     = aws_vpc.main.id
   cidr_block = "10.0.2.0/24"
-  availability_zone = "us-east-1b"
+  availability_zone = "ap-south-1b"
 }
 
 resource "aws_subnet" "subnet3" {
   vpc_id     = aws_vpc.main.id
   cidr_block = "10.0.3.0/24"
-  availability_zone = "us-east-1c"
+  availability_zone = "ap-south-1c"
 }
 
 # 4. Create an Internet Gateway
@@ -85,7 +85,7 @@ resource "aws_security_group" "allow_ssh_http" {
 
 # 7. Launch EC2 Instances
 resource "aws_instance" "web1" {
-  ami           = "ami-0c55b159cbfafe1f0" # Amazon Linux 2 AMI
+  ami           = "ami-0888ba30fd446b771" # Amazon Linux 2 AMI
   instance_type = "t2.micro"
   subnet_id     = aws_subnet.subnet1.id
   security_groups = [aws_security_group.allow_ssh_http.name]
@@ -104,7 +104,7 @@ resource "aws_instance" "web1" {
 }
 
 resource "aws_instance" "web2" {
-  ami           = "ami-0c55b159cbfafe1f0"
+  ami           = "ami-0888ba30fd446b771"
   instance_type = "t2.micro"
   subnet_id     = aws_subnet.subnet2.id
   security_groups = [aws_security_group.allow_ssh_http.name]
@@ -123,7 +123,7 @@ resource "aws_instance" "web2" {
 }
 
 resource "aws_instance" "web3" {
-  ami           = "ami-0c55b159cbfafe1f0"
+  ami           = "ami-0888ba30fd446b771"
   instance_type = "t2.micro"
   subnet_id     = aws_subnet.subnet3.id
   security_groups = [aws_security_group.allow_ssh_http.name]
