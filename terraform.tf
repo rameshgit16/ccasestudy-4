@@ -88,7 +88,7 @@ resource "aws_instance" "web1" {
   ami           = "ami-0888ba30fd446b771" # Amazon Linux 2 AMI
   instance_type = "t2.micro"
   subnet_id     = aws_subnet.subnet1.id
-  security_groups = [aws_security_group.allow_ssh_http.name]
+  vpc_security_group_ids = [aws_security_group.allow_ssh_http.id]
   iam_instance_profile = aws_iam_instance_profile.ec2_profile.id
 
   user_data = <<-EOF
@@ -108,7 +108,7 @@ resource "aws_instance" "web2" {
   ami           = "ami-0888ba30fd446b771"
   instance_type = "t2.micro"
   subnet_id     = aws_subnet.subnet2.id
-  security_groups = [aws_security_group.allow_ssh_http.name]
+  vpc_security_group_ids = [aws_security_group.allow_ssh_http.id]
   iam_instance_profile = aws_iam_instance_profile.ec2_profile.id
   user_data = <<-EOF
               #!/bin/bash
@@ -127,7 +127,7 @@ resource "aws_instance" "web3" {
   ami           = "ami-0888ba30fd446b771"
   instance_type = "t2.micro"
   subnet_id     = aws_subnet.subnet3.id
-  security_groups = [aws_security_group.allow_ssh_http.name]
+  vpc_security_group_ids = [aws_security_group.allow_ssh_http.id]
   iam_instance_profile = aws_iam_instance_profile.ec2_profile.id
 
   user_data = <<-EOF
