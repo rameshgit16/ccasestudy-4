@@ -24,7 +24,7 @@ resource "aws_subnet" "subnet2" {
 resource "aws_subnet" "subnet3" {
   vpc_id     = aws_vpc.main.id
   cidr_block = "10.0.3.0/24"
-  availability_zone = "ap-south-1c"
+  availability_zone = "ap-south-1a"
 }
 
 # 4. Create an Internet Gateway
