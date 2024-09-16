@@ -1,6 +1,6 @@
 # 1. Provider
 provider "aws" {
-  region = "ap-south-1" # You can change the region as per your requirement
+  region = "ap-south-1" 
 }
 
 # 2. Create a VPC
@@ -85,7 +85,7 @@ resource "aws_security_group" "allow_ssh_http" {
 
 # 7. Launch EC2 Instances
 resource "aws_instance" "web1" {
-  ami           = "ami-0888ba30fd446b771" # Amazon Linux 2 AMI
+  ami           = "ami-0888ba30fd446b771" 
   instance_type = "t2.micro"
   subnet_id     = aws_subnet.subnet1.id
   vpc_security_group_ids = [aws_security_group.allow_ssh_http.id]
